@@ -25,5 +25,5 @@ $ ./build.sh
 
 Generated artifacts from this repository:
 
-* https://github.com/nightblue-io/vortex-go
-* https://nightblue-io.github.io/vortex-apidocs/
+* https://github.com/nightblue-io/vortex-go - Go SDK
+* https://nightblue-io.github.io/vortex-apidocs/ - OpenAPI docs

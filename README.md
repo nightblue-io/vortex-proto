@@ -4,7 +4,7 @@ The folder `google/*` was cloned from [github.com/googleapis/api-common-protos](
 
 Install the following tools to build locally:
 
-* The [`protoc`](https://grpc.io/docs/protoc-installation/) compiler
+* The [`protoc`](https://grpc.io/docs/protoc-installation/) compiler,
 * The following compiler plugins:
 
 ```bash
@@ -15,7 +15,7 @@ $ go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@late
 $ go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
 ```
 
-* The [`buf`](https://docs.buf.build/installation) tool
+* The [`buf`](https://docs.buf.build/installation) tool.
 
 Then run:
 

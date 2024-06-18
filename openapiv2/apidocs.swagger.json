@@ -1,0 +1,89 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "vortex/v1/vortex.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Vortex",
+      "description": "(ALPHA) Vortex API. Base URL: https://api.nightblue.io",
+      "externalDocs": {
+        "description": "Service definition",
+        "url": "https://github.com/nightblue-io/vortex-proto/tree/main/vortex/v1"
+      }
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/vortex/v0/info": {
+      "get": {
+        "summary": "Testing endpoint.",
+        "operationId": "Vortex_GetInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetInfoResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Vortex"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1GetInfoResponse": {
+      "type": "object",
+      "properties": {
+        "info": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for the GetInfo rpc."
+    }
+  }
+}

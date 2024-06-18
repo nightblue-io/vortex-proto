@@ -3,7 +3,6 @@ syntax = "proto3";
 package vortexproto.vortex.v1;
 
 import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "github.com/vortex-io/vortexproto/vortex";
@@ -11,9 +10,9 @@ option go_package = "github.com/vortex-io/vortexproto/vortex";
 // IAM service definition.
 service Vortex {
   option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_tag) = {
-    description: "(ALPHA) Vortex API. Base URL: https://api.nightblue.io/m/blue"
+    description: "(ALPHA) Vortex API. Base URL: https://api.nightblue.io"
     external_docs: {
-      url: "https://github.com/alphauslabs/blueapi/tree/main/iam/";
+      url: "https://github.com/nightblue-io/vortex-proto/tree/main/vortex/v1";
       description: "Service definition";
     }
   };

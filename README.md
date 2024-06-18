@@ -15,7 +15,7 @@ $ go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@late
 $ go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
 ```
 
-* The [buf](https://docs.buf.build/installation) tool
+* The [`buf`](https://docs.buf.build/installation) tool
 
 Then run:
 

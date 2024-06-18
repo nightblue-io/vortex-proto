@@ -39,6 +39,7 @@ jobs:
         go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
         export PATH="$PATH:$HOME/.local/bin:$(go env GOPATH)/bin"
         echo 'Build tool versions:' && protoc --version && protoc-gen-go --version
+        echo 'PATH:' && echo $PATH
         # Start build:
         mkdir -p generated/py && chmod +x ./build.sh && ./build.sh
         if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then

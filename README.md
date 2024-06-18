@@ -23,6 +23,7 @@ Then run:
 $ ./build.sh
 ```
 
-Generated SDK(s) from updates to this repository:
+Generated artifacts from this repository:
 
-* [vortex-go](https://github.com/nightblue-io/vortex-go)
+* https://github.com/nightblue-io/vortex-go
+* https://nightblue-io.github.io/vortex-apidocs/

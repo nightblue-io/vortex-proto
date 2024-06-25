@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package vortexproto.types;
 
-option go_package = "github.com/vortex-io/vortex-go/types";
+option go_package = "github.com/nightblue-io/vortex-go/types";
 
 message Location {
   // If set, prioritize over active region.

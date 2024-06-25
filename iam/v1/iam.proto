@@ -90,7 +90,9 @@ message LoginResponse {
 }
 
 // Request message for the WhoAmI rpc.
-message WhoAmIRequest {}
+message WhoAmIRequest {
+  string access_token = 1;
+}
 
 // Request message for the WhoAmI rpc.
 message WhoAmIResponse {

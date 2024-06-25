@@ -127,6 +127,14 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "Iam"
         ]

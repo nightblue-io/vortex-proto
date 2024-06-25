@@ -28,18 +28,21 @@ service Vortex {
   };
 
   // Testing endpoint.
-  rpc GetInfo(GetInfoRequest) returns (GetInfoResponse) {
+  rpc Do(DoRequest) returns (DoResponse) {
     option (google.api.http) = {
-      get: "/vortex/v0/info"
+      post: "/vortex/v1:do"
+      body: "*"
     };
   }
 }
 
-// Request message for the GetInfo rpc.
-message GetInfoRequest {}
+// Request message for the Do rpc.
+message DoRequest {
+  string data = 1;
+}
 
-// Request message for the GetInfo rpc.
-message GetInfoResponse {
-  string info = 1;
+// Request message for the Do rpc.
+message DoResponse {
+  string data = 1;
 }
 

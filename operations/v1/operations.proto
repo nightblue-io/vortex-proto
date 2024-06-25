@@ -7,7 +7,7 @@ import "google/protobuf/empty.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 import "types/operation.proto";
 
-option go_package = "github.com/vortex-io/vortexproto/operations";
+option go_package = "github.com/vortex-io/vortex-go/operations";
 
 // Operations service definition.
 service Operations {

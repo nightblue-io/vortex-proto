@@ -4,7 +4,7 @@ package vortexproto.vortex.v1;
 
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
-import "types/cloudcreds.proto";
+import "types/cloud.proto";
 import "types/operation.proto";
 
 option go_package = "github.com/nightblue-io/vortex-go/vortex";
@@ -83,6 +83,9 @@ message CreateEnvironmentRequest {
   vortexproto.types.GCPInfo gcp_info = 3;
 
   vortexproto.types.AWSInfo aws_info = 4;
+
+  // TBD.
+  vortexproto.types.AzureInfo azure_info = 5;
 
 }
 

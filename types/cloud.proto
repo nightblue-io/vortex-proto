@@ -33,3 +33,5 @@ message AWSInfo {
 
   Location location = 4;
 }
+
+message AzureInfo {}

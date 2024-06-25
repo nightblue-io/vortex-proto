@@ -27,6 +27,35 @@ service Vortex {
     }
   };
 
+  // Create a deployment environment.
+  rpc CreateEnvironment(CreateEnvironmentRequest) returns (CreateEnvironmentResponse) {
+    option (google.api.http) = {
+      post: "/vortex/v1/envs"
+      body: "*"
+    };
+  }
+
+  // Describe a deployment environment.
+  rpc GetEnvironment(GetEnvironmentRequest) returns (GetEnvironmentResponse) {
+    option (google.api.http) = {
+      get: "/vortex/v1/envs/{name}"
+    };
+  }
+
+  // List deployment environments.
+  rpc ListEnvironments(ListEnvironmentsRequest) returns (ListEnvironmentsResponse) {
+    option (google.api.http) = {
+      get: "/vortex/v1/envs"
+    };
+  }
+
+  // Delete a deployment environment.
+  rpc DeleteEnvironment(DeleteEnvironmentRequest) returns (DeleteEnvironmentResponse) {
+    option (google.api.http) = {
+      delete: "/vortex/v1/envs/{name}"
+    };
+  }
+
   // Testing endpoint.
   rpc Do(DoRequest) returns (DoResponse) {
     option (google.api.http) = {
@@ -36,13 +65,52 @@ service Vortex {
   }
 }
 
+// Request message for the CreateEnvironment rpc.
+message CreateEnvironmentRequest {
+  string name = 1;
+}
+
+// Response message for the CreateEnvironment rpc.
+message CreateEnvironmentResponse {
+  string name = 1;
+}
+
+// Request message for the GetEnvironment rpc.
+message GetEnvironmentRequest {
+  string name = 1;
+}
+
+// Response message for the GetEnvironment rpc.
+message GetEnvironmentResponse {
+  string name = 1;
+}
+
+// Request message for the ListEnvironments rpc.
+message ListEnvironmentsRequest {
+  string name = 1;
+}
+
+// Response message for the ListEnvironments rpc.
+message ListEnvironmentsResponse {
+  string name = 1;
+}
+
+// Request message for the DeleteEnvironment rpc.
+message DeleteEnvironmentRequest {
+  string name = 1;
+}
+
+// Response message for the DeleteEnvironment rpc.
+message DeleteEnvironmentResponse {
+  string name = 1;
+}
+
 // Request message for the Do rpc.
 message DoRequest {
   string data = 1;
 }
 
-// Request message for the Do rpc.
+// Response message for the Do rpc.
 message DoResponse {
   string data = 1;
 }
-

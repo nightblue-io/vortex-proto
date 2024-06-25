@@ -19,14 +19,6 @@ service Iam {
   };
 
   // Create an account for the Vortex Platform.
-  rpc SignUp(SignUpRequest) returns (SignUpResponse) {
-    option (google.api.http) = {
-      post: "/vortex/iam/v1/signup"
-      body: "*"
-    };
-  }
-
-  // Create an account for the Vortex Platform.
   rpc Login(LoginRequest) returns (stream LoginResponse) {
     option (google.api.http) = {
       post: "/vortex/iam/v1/login"
@@ -40,26 +32,6 @@ service Iam {
       get: "/vortex/iam/v1/whoami"
     };
   }
-}
-
-// Request message for the SignUp rpc.
-message SignUpRequest {
-  // Optional. The name of the account to register.
-  string name = 1;
-
-  // Required. The email address of the account to register.
-  string email = 2;
-
-  // Optional. A generated password will be provided if empty.
-  string password = 3;
-}
-
-// Response message for the SignUp rpc.
-message SignUpResponse {
-  string id = 1;
-  string name = 2;
-  string email = 3;
-  string password = 4;
 }
 
 // Request message for the Login rpc.

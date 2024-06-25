@@ -21,6 +21,14 @@
         "description": "See here for the service definition.",
         "url": "https://github.com/nightblue-io/vortex-proto/tree/main/iam/v1"
       }
+    },
+    {
+      "name": "Operations",
+      "description": "(ALPHA) Operations API. Base URL: https://api.nightblue.io",
+      "externalDocs": {
+        "description": "See here for the service definition.",
+        "url": "https://github.com/nightblue-io/vortex-proto/tree/main/longrunning/v1"
+      }
     }
   ],
   "host": "api.nightblue.io",
@@ -76,39 +84,6 @@
         ]
       }
     },
-    "/vortex/iam/v1/signup": {
-      "post": {
-        "summary": "Create an account for the Vortex Platform.",
-        "operationId": "Iam_SignUp",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1SignUpResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1SignUpRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Iam"
-        ]
-      }
-    },
     "/vortex/iam/v1/whoami": {
       "get": {
         "summary": "Testing endpoint.",
@@ -137,6 +112,264 @@
         ],
         "tags": [
           "Iam"
+        ]
+      }
+    },
+    "/vortex/ops/v1": {
+      "get": {
+        "summary": "List long-running operations.",
+        "operationId": "Operations_ListOperations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListOperationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "nextToken",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Operations"
+        ]
+      }
+    },
+    "/vortex/ops/v1/{name}": {
+      "get": {
+        "summary": "Get a long-running operation.",
+        "operationId": "Operations_GetOperation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/longrunningv1Operation"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Operations"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a long-running operation.",
+        "operationId": "Operations_DeleteOperation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Operations"
+        ]
+      }
+    },
+    "/vortex/ops/v1/{name}:cancel": {
+      "post": {
+        "summary": "Cancel a long-running operation.",
+        "operationId": "Operations_CancelOperation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CancelOperationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Operations"
+        ]
+      }
+    },
+    "/vortex/v1/envs": {
+      "get": {
+        "summary": "List deployment environments.",
+        "operationId": "Vortex_ListEnvironments",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListEnvironmentsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Vortex"
+        ]
+      },
+      "post": {
+        "summary": "Create a deployment environment.",
+        "operationId": "Vortex_CreateEnvironment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateEnvironmentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateEnvironmentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Vortex"
+        ]
+      }
+    },
+    "/vortex/v1/envs/{name}": {
+      "get": {
+        "summary": "Describe a deployment environment.",
+        "operationId": "Vortex_GetEnvironment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetEnvironmentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Vortex"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a deployment environment.",
+        "operationId": "Vortex_DeleteEnvironment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteEnvironmentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Vortex"
         ]
       }
     },
@@ -190,6 +423,32 @@
         }
       }
     },
+    "longrunningv1Operation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The server-assigned name, which is only unique within the same service that\noriginally returns it. If you use the default HTTP mapping, the\n`name` should be a resource name ending with `operations/{unique_id}`."
+        },
+        "metadata": {
+          "$ref": "#/definitions/protobufAny",
+          "description": "Service-specific metadata associated with the operation.  It typically\ncontains progress information and common metadata such as create time.\nSome services might not provide such metadata.  Any method that returns a\nlong-running operation should document the metadata type, if any."
+        },
+        "done": {
+          "type": "boolean",
+          "description": "If the value is `false`, it means the operation is still in progress.\nIf `true`, the operation is completed, and either `error` or `response` is\navailable."
+        },
+        "error": {
+          "$ref": "#/definitions/rpcStatus",
+          "description": "The error result of the operation in case of failure or cancellation."
+        },
+        "response": {
+          "$ref": "#/definitions/protobufAny",
+          "description": "The normal response of the operation in case of success.  If the original\nmethod returns no data on success, such as `Delete`, the response is\n`google.protobuf.Empty`.  If the original method is standard\n`Get`/`Create`/`Update`, the response should be the resource.  For other\nmethods, the response should have the type `XxxResponse`, where `Xxx`\nis the original method name.  For example, if the original method name\nis `TakeSnapshot()`, the inferred response type is\n`TakeSnapshotResponse`."
+        }
+      },
+      "description": "This resource represents a long-running operation that is the result of a\nnetwork API call."
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -227,6 +486,42 @@
       },
       "description": "The `Status` type defines a logical error model that is suitable for\ndifferent programming environments, including REST APIs and RPC APIs. It is\nused by [gRPC](https://github.com/grpc). Each `Status` message contains\nthree pieces of data: error code, error message, and error details.\n\nYou can find out more about this error model and how to work with it in the\n[API Design Guide](https://cloud.google.com/apis/design/errors)."
     },
+    "v1CancelOperationRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for the CancelOperation rpc."
+    },
+    "v1CreateEnvironmentRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "description": "Request message for the CreateEnvironment rpc."
+    },
+    "v1CreateEnvironmentResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for the CreateEnvironment rpc."
+    },
+    "v1DeleteEnvironmentResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for the DeleteEnvironment rpc."
+    },
     "v1DoRequest": {
       "type": "object",
       "properties": {
@@ -243,7 +538,40 @@
           "type": "string"
         }
       },
-      "description": "Request message for the Do rpc."
+      "description": "Response message for the Do rpc."
+    },
+    "v1GetEnvironmentResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for the GetEnvironment rpc."
+    },
+    "v1ListEnvironmentsResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for the ListEnvironments rpc."
+    },
+    "v1ListOperationsResponse": {
+      "type": "object",
+      "properties": {
+        "operations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/longrunningv1Operation"
+          }
+        },
+        "nextToken": {
+          "type": "string"
+        }
+      },
+      "description": "Response message for the ListOperations rpc."
     },
     "v1LoginRequest": {
       "type": "object",
@@ -279,42 +607,6 @@
         }
       },
       "description": "Response message for the Login rpc."
-    },
-    "v1SignUpRequest": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Optional. The name of the account to register."
-        },
-        "email": {
-          "type": "string",
-          "description": "Required. The email address of the account to register."
-        },
-        "password": {
-          "type": "string",
-          "description": "Optional. A generated password will be provided if empty."
-        }
-      },
-      "description": "Request message for the SignUp rpc."
-    },
-    "v1SignUpResponse": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      },
-      "description": "Response message for the SignUp rpc."
     },
     "v1WhoAmIResponse": {
       "type": "object",

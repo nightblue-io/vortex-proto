@@ -3,7 +3,9 @@ syntax = "proto3";
 package vortexproto.vortex.v1;
 
 import "google/api/annotations.proto";
+import "operations/v1/operations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
+import "types/cloudcreds.proto";
 
 option go_package = "github.com/vortex-io/vortexproto/vortex";
 
@@ -68,11 +70,26 @@ service Vortex {
 // Request message for the CreateEnvironment rpc.
 message CreateEnvironmentRequest {
   string name = 1;
+
+  // Valid values:
+  //
+  // SC_MR_GCP
+  // SC_SR_GCP
+  // SC_MR_AWS
+  // SC_SR_AWS
+  // MC_AUTO
+  string profile = 2;
+
+  vortexproto.types.GCPInfo gcp_info = 3;
+
+  vortexproto.types.AWSInfo aws_info = 4;
+
 }
 
 // Response message for the CreateEnvironment rpc.
 message CreateEnvironmentResponse {
   string name = 1;
+  vortexproto.operations.v1.Operation operation = 2;
 }
 
 // Request message for the GetEnvironment rpc.

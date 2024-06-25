@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package vortexproto.types;
+
+option go_package = "github.com/vortex-io/vortexproto/types";
+
+message Location {
+  // If set, prioritize over active region.
+  string active_zone = 1;
+
+  // Valid only when active zone is not set.
+  string active_region = 2;
+
+  // If set, prioritize over passive region.
+  string passive_zone = 3;
+
+  // Valid only when passive zone is not set.
+  string passive_region = 4;
+}
+
+message GCPInfo {
+  bytes service_account = 1;
+
+  Location location = 2;
+}
+
+message AWSInfo {
+  // Prioritized over id/secret.
+  string role_arn = 1;
+
+  string client_id_arn = 2;
+  string client_secret = 3;
+
+  Location location = 4;
+}

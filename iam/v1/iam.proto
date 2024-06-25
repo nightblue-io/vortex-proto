@@ -3,6 +3,7 @@ syntax = "proto3";
 package vortexproto.iam.v1;
 
 import "google/api/annotations.proto";
+import "google/rpc/status.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
 option go_package = "github.com/vortex-io/vortexproto/iam";
@@ -20,15 +21,15 @@ service Iam {
   // Create an account for the Vortex Platform.
   rpc SignUp(SignUpRequest) returns (SignUpResponse) {
     option (google.api.http) = {
-      post: "/vortex/iam/v0/signup"
+      post: "/vortex/iam/v1/signup"
       body: "*"
     };
   }
 
   // Create an account for the Vortex Platform.
-  rpc Login(LoginRequest) returns (LoginResponse) {
+  rpc Login(LoginRequest) returns (stream LoginResponse) {
     option (google.api.http) = {
-      post: "/vortex/iam/v0/login"
+      post: "/vortex/iam/v1/login"
       body: "*"
     };
   }
@@ -36,7 +37,7 @@ service Iam {
   // Testing endpoint.
   rpc WhoAmI(WhoAmIRequest) returns (WhoAmIResponse) {
     option (google.api.http) = {
-      get: "/vortex/iam/v0/whoami"
+      get: "/vortex/iam/v1/whoami"
     };
   }
 }
@@ -63,13 +64,28 @@ message SignUpResponse {
 
 // Request message for the Login rpc.
 message LoginRequest {
-  string id = 1;
-  string password = 2;
+  // Optional. If set, use to call user profile.
+  string access_token = 1;
+
+  string id = 2;
+  string password = 3;
+
+  // Optional. If non-empty, do a device auth flow.
+  string device_auth = 4;
 }
 
 // Response message for the Login rpc.
 message LoginResponse {
-  string token = 1;
+  message DeviceAuth {
+    string user_code = 1;
+    string verification_uri_complete = 2;
+  }
+
+  DeviceAuth device_auth = 1;
+
+  string access_token = 2;
+
+  google.rpc.Status status = 3;
 }
 
 // Request message for the WhoAmI rpc.

@@ -79,6 +79,7 @@ message LoginResponse {
   message DeviceAuth {
     string user_code = 1;
     string verification_uri_complete = 2;
+    int64 expires_in = 3;
   }
 
   DeviceAuth device_auth = 1;
